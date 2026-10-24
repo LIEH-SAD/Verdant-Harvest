@@ -53,7 +53,8 @@ foojay resolver 自动下载。
 ./gradlew :26.3-neoforge:runData       # NeoForge 数据生成
 ```
 
-产物位于 `versions/<节点>/build/libs/`。所有节点共用根目录的 `run/` 作为运行目录。
+`build` 结束后，各节点的 jar 会被 `buildAndCollect` 汇总到根目录 `build/libs/{模组版本}/`
+（各节点自己的 `versions/<节点>/build/libs/` 仍然保留）。所有节点共用根目录的 `run/` 作为运行目录。
 
 在 IntelliJ IDEA 中执行一次 Gradle 同步后，Loom / ModDevGradle 会为每个节点生成
 `runClient` / `runServer` / 数据生成运行配置，可直接从右上角运行。

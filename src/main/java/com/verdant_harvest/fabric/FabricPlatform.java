@@ -1,7 +1,7 @@
 package com.verdant_harvest.fabric;
 
 //? if fabric {
-/*import com.verdant_harvest.platform.CreativeTabOutput;
+import com.verdant_harvest.platform.CreativeTabOutput;
 import com.verdant_harvest.platform.IPlatform;
 import com.verdant_harvest.platform.MenuFactory;
 import com.verdant_harvest.platform.RegistryEntry;
@@ -18,11 +18,11 @@ import net.minecraft.world.item.ItemStack;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-/^*
+/**
  * Fabric 侧的通用加载器服务实现。
  *
  * <p>Fabric 的注册表没有“冻结窗口”，对象可以立刻创建并注册。
- ^/
+ */
 public class FabricPlatform implements IPlatform {
 
     @Override
@@ -55,4 +55,4 @@ public class FabricPlatform implements IPlatform {
         return new MenuType<>(factory::create, FeatureFlags.DEFAULT_FLAGS);
     }
 }
-*///?}
+//?}

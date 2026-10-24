@@ -3,7 +3,7 @@ plugins {
 }
 
 // The node whose state is written into the shared `src/` tree.
-stonecutter active "26.2-neoforge"
+stonecutter active "26.2-fabric"
 
 // See https://stonecutter.kikugie.dev/wiki/v2/reference/gradle-api/project-controller
 stonecutter parameters {

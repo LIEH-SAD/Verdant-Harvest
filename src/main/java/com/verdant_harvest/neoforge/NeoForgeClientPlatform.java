@@ -1,7 +1,7 @@
 package com.verdant_harvest.neoforge;
 
 //? if neoforge {
-import com.verdant_harvest.Client.Screen.PotScreen;
+/*import com.verdant_harvest.Client.Screen.PotScreen;
 import com.verdant_harvest.MenuTypes;
 import com.verdant_harvest.platform.IClientPlatform;
 import net.neoforged.bus.api.IEventBus;
@@ -25,4 +25,4 @@ public class NeoForgeClientPlatform implements IClientPlatform {
                 event.register(MenuTypes.POT_MENU, PotScreen::new));
     }
 }
-//?}
+*///?}

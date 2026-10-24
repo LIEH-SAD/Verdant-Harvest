@@ -1,7 +1,7 @@
 package com.verdant_harvest.fabric.DataGenerator;
 
 //? if fabric {
-/*import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
 public class VerdantHarvestDataGenerator implements DataGeneratorEntrypoint {
@@ -10,4 +10,4 @@ public class VerdantHarvestDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 	}
 }
-*///?}
+//?}

@@ -85,3 +85,21 @@ tasks.jar {
         rename { "${it}_${base.archivesName.get()}" }
     }
 }
+
+// Collects the finished jars into the root `build/libs/{mod version}/` directory,
+// so all four nodes end up in one place.
+val buildAndCollect = tasks.register<Copy>("buildAndCollect") {
+    group = "build"
+    description = "Copies the Fabric mod jar and its sources into the root build/libs directory."
+
+    inputs.property("version", modVersion)
+    from(
+        tasks.jar.flatMap { it.archiveFile },
+        tasks.named<Jar>("sourcesJar").flatMap { it.archiveFile },
+    )
+    into(rootProject.layout.buildDirectory.dir("libs/$modVersion"))
+}
+
+tasks.named("build") {
+    dependsOn(buildAndCollect)
+}

@@ -1,7 +1,7 @@
 package com.verdant_harvest.neoforge;
 
 //? if neoforge {
-import com.verdant_harvest.InitClient;
+/*import com.verdant_harvest.InitClient;
 import com.verdant_harvest.platform.Platform;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -17,4 +17,4 @@ public class VerdantHarvestNeoForgeClient {
         InitClient.init();
     }
 }
-//?}
+*///?}

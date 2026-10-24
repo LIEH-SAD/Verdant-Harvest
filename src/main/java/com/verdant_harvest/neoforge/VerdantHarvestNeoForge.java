@@ -1,7 +1,7 @@
 package com.verdant_harvest.neoforge;
 
 //? if neoforge {
-import com.verdant_harvest.Init;
+/*import com.verdant_harvest.Init;
 import com.verdant_harvest.platform.Platform;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -33,4 +33,4 @@ public class VerdantHarvestNeoForge {
         // 目前没有需要生成的数据提供器；这里保留入口以便后续添加。
     }
 }
-//?}
+*///?}

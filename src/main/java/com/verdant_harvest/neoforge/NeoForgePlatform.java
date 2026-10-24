@@ -1,7 +1,7 @@
 package com.verdant_harvest.neoforge;
 
 //? if neoforge {
-import com.verdant_harvest.Init;
+/*import com.verdant_harvest.Init;
 import com.verdant_harvest.platform.CreativeTabOutput;
 import com.verdant_harvest.platform.IPlatform;
 import com.verdant_harvest.platform.MenuFactory;
@@ -78,4 +78,4 @@ public class NeoForgePlatform implements IPlatform {
         return new MenuType<>(factory::create, FeatureFlags.DEFAULT_FLAGS);
     }
 }
-//?}
+*///?}
