@@ -1,0 +1,85 @@
+// Fabric build script, evaluated once per `versions/{mcversion}-fabric` node.
+
+plugins {
+    id("net.fabricmc.fabric-loom") version "1.19.3"
+}
+
+val modId = property("mod.id") as String
+val modVersion = property("mod.version") as String
+val minecraftVersion = sc.current.version
+val loaderVersion = property("deps.fabric_loader") as String
+
+version = "$modVersion+$minecraftVersion"
+base.archivesName = "$modId-fabric"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 26.x ships unobfuscated, so a plain `minecraft` dependency (no `mappings`)
+    // and regular `implementation` scopes are all that is needed.
+    minecraft("com.mojang:minecraft:$minecraftVersion")
+    implementation("net.fabricmc:fabric-loader:$loaderVersion")
+    implementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
+}
+
+fabricApi {
+    configureDataGeneration {
+        client = true
+    }
+}
+
+loom {
+    mods {
+        register(modId) {
+            sourceSet(sourceSets.main.get())
+        }
+    }
+
+    runConfigs.configureEach {
+        // Dev runs from IntelliJ are delegated to Gradle, so the Stonecutter
+        // generated sources are always up to date.
+        preferGradleTask = true
+        generateRunConfig = true
+        // One shared run directory for every node.
+        runDirectory = rootProject.file("run")
+    }
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+
+    toolchain {
+        vendor = JvmVendorSpec.ADOPTIUM
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.release = 25
+    options.encoding = "UTF-8"
+}
+
+tasks.processResources {
+    val props = mapOf(
+        "id" to modId,
+        "name" to property("mod.name"),
+        "version" to project.version.toString(),
+        "minecraft" to property("mod.mc_compat"),
+        "loader" to loaderVersion,
+        "java" to "25",
+    )
+    inputs.properties(props)
+
+    filesMatching("fabric.mod.json") { expand(props) }
+    exclude("META-INF/neoforge.mods.toml")
+}
+
+tasks.jar {
+    from(rootProject.file("LICENSE")) {
+        rename { "${it}_${base.archivesName.get()}" }
+    }
+}

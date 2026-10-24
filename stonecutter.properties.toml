@@ -1,0 +1,30 @@
+# Shared metadata and per version/loader dependencies.
+# Read from build scripts through `property("...")` (properties are exposed as Gradle properties).
+
+mod.id = "verdant_harvest"
+mod.name = "Verdant Harvest"
+mod.group = "com.verdant_harvest"
+mod.version = "0.0.1"
+mod.license = "MIT"
+mod.authors = "Nanbin-Studio"
+mod.description = "A timely snow promises a good harvest."
+mod.homepage = "https://lieh-sad.github.io/nanbin/"
+
+[fabric]
+deps.fabric_loader = "0.19.5"
+
+[fabric."26.2"]
+deps.fabric_api = "0.161.0+26.2"
+mod.mc_compat = "~26.2"
+
+[fabric."26.3"]
+deps.fabric_api = "0.163.0+26.3"
+mod.mc_compat = "~26.3"
+
+[neoforge."26.2"]
+deps.neo_loader = "26.2.0.88"
+mod.mc_compat = "[26.2,26.3)"
+
+[neoforge."26.3"]
+deps.neo_loader = "26.3.0.86"
+mod.mc_compat = "[26.3,26.4)"

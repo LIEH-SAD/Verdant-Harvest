@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "verdant_harvest",
+	"version": "${version}",
+	"name": "Verdant Harvest",
+	"description": "A timely snow promises a good harvest.",
+	"authors": [
+		"Nanbin-Studio"
+	],
+	"contact": {
+		"homepage": "https://lieh-sad.github.io/nanbin/",
+		"sources": "https://lieh-sad.github.io/nanbin/"
+	},
+	"license": "MIT",
+	"icon": "assets/verdant_harvest/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.verdant_harvest.fabric.VerdantHarvestFabric"
+		],
+		"client": [
+			"com.verdant_harvest.fabric.VerdantHarvestFabricClient"
+		],
+		"fabric-datagen": [
+			"com.verdant_harvest.fabric.DataGenerator.VerdantHarvestDataGenerator"
+		]
+	},
+	"mixins": [
+		"verdant-harvest.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=${loader}",
+		"minecraft": "${minecraft}",
+		"java": ">=${java}",
+		"fabric-api": "*"
+	}
+}

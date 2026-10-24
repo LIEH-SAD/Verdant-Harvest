@@ -28,6 +28,10 @@ bin/
 
 *.DS_Store
 
+# Stonecutter generated node projects
+
+versions/
+
 # fabric / neoforge run directories
 
 run/
@@ -35,7 +39,7 @@ run/
 
 # generated data (datagen output)
 
-*/src/generated/
+src/generated/
 
 # java
 
