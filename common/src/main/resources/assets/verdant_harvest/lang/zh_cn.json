@@ -1,0 +1,10 @@
+{
+  "itemGroup.verdant_harvest.seed": "丰年 —— 种子",
+  "itemGroup.verdant_harvest.food": "丰年 —— 食物",
+  "item.verdant_harvest.corn": "玉米棒",
+  "item.verdant_harvest.roast_corn": "烤玉米棒",
+  "item.verdant_harvest.corn_kernel": "玉米粒",
+  "item.verdant_harvest.popcorn": "爆米花",
+  "block.verdant_harvest.pot": "锅",
+  "gui.verdant_harvest.pot": "锅"
+}

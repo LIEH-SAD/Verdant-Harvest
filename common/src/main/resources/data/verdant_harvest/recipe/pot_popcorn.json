@@ -1,0 +1,15 @@
+{
+  "type": "verdant_harvest:pot_cooking",
+  "group": "verdant_harvest",
+  "key": {
+    "c": "verdant_harvest:corn_kernel"
+  },
+  "pattern": [
+    "c"
+  ],
+  "result": {
+    "id": "verdant_harvest:popcorn",
+    "count": 1
+  },
+  "cookingtime": 100
+}

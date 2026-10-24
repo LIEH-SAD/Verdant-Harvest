@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "verdant_harvest:block/corn1"
+    },
+    "age=1": {
+      "model": "verdant_harvest:block/corn1"
+    },
+    "age=2": {
+      "model": "verdant_harvest:block/corn2"
+    },
+    "age=3": {
+      "model": "verdant_harvest:block/corn2"
+    },
+    "age=4": {
+      "model": "verdant_harvest:block/corn2"
+    },
+    "age=5": {
+      "model": "verdant_harvest:block/corn2"
+    },
+    "age=6": {
+      "model": "verdant_harvest:block/corn2"
+    },
+    "age=7": {
+      "model": "verdant_harvest:block/corn3"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "itemGroup.verdant_harvest.seed": "Verdant Harvest Seed",
+  "itemGroup.verdant_harvest.food": "Verdant Harvest Food",
+  "item.verdant_harvest.corn": "Corn",
+  "item.verdant_harvest.roast_corn": "Roasted Corn",
+  "item.verdant_harvest.corn_kernel": "Corn Kernel",
+  "item.verdant_harvest.popcorn": "Popcorn",
+  "block.verdant_harvest.pot": "Pot",
+  "gui.verdant_harvest.pot": "Pot"
+}

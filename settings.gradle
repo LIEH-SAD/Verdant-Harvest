@@ -1,0 +1,29 @@
+pluginManagement {
+	repositories {
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		maven {
+			name = 'NeoForged'
+			url = 'https://maven.neoforged.net/releases'
+		}
+		mavenCentral()
+		gradlePluginPortal()
+	}
+}
+
+plugins {
+	// Provisions the Java 25 toolchain automatically when no local JDK 25 is installed.
+	id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
+// Should match your modid
+rootProject.name = 'verdant-harvest'
+
+// common -> shared, loader-agnostic code compiled against vanilla Minecraft
+// fabric -> Fabric entrypoints + fabric.mod.json
+// neoforge -> NeoForge entrypoints + META-INF/neoforge.mods.toml
+include 'common'
+include 'fabric'
+include 'neoforge'
