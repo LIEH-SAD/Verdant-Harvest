@@ -1,6 +1,8 @@
 package com.verdant_harvest.Blocks.Block;
 
+//? if <26.3 {
 import com.mojang.serialization.MapCodec;
+//?}
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -17,6 +19,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
+//? if >=26.3 {
+/*import net.minecraft.world.level.block.BonemealSource;
+*///?}
 import net.minecraft.world.level.block.FarmlandBlock;
 import net.minecraft.world.level.block.VegetationBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -30,14 +35,18 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockCorn extends VegetationBlock implements BonemealableBlock {
+    //? if <26.3 {
     public static final MapCodec<BlockCorn> CODEC = simpleCodec(BlockCorn::new);
+    //?}
     public static final int MAX_AGE = 7;
     public static final IntegerProperty AGE;
     private static final VoxelShape[] SHAPES;
 
+    //? if <26.3 {
     public MapCodec<? extends BlockCorn> codec() {
         return CODEC;
     }
+    //?}
 
     public BlockCorn(final BlockBehaviour.Properties properties) {
         super(properties);
@@ -165,6 +174,19 @@ public class BlockCorn extends VegetationBlock implements BonemealableBlock {
         return new ItemStack(this.getBaseSeedId());
     }
 
+    //? if >=26.3 {
+    /*public boolean isValidBonemealTarget(final LevelReader level, final BlockPos pos, final BlockState state, final BonemealSource source) {
+        return !this.isMaxAge(state);
+    }
+
+    public boolean isBonemealSuccess(final Level level, final RandomSource random, final BlockPos pos, final BlockState state, final BonemealSource source) {
+        return true;
+    }
+
+    public void performBonemeal(final ServerLevel level, final RandomSource random, final BlockPos pos, final BlockState state, final BonemealSource source) {
+        this.growCrops(level, pos, state);
+    }
+    *///?} else {
     public boolean isValidBonemealTarget(final LevelReader level, final BlockPos pos, final BlockState state) {
         return !this.isMaxAge(state);
     }
@@ -176,6 +198,7 @@ public class BlockCorn extends VegetationBlock implements BonemealableBlock {
     public void performBonemeal(final ServerLevel level, final RandomSource random, final BlockPos pos, final BlockState state) {
         this.growCrops(level, pos, state);
     }
+    //?}
 
     protected void createBlockStateDefinition(final StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(new Property[]{AGE});

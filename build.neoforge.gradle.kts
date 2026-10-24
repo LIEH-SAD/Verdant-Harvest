@@ -7,9 +7,15 @@ plugins {
 }
 
 val modId = property("mod.id") as String
+val modName = property("mod.name") as String
 val modVersion = property("mod.version") as String
 val minecraftVersion = sc.current.version
 val neoVersion = property("deps.neo_loader") as String
+val minecraftCompat = property("mod.mc_compat") as String
+val modLicense = property("mod.license") as String
+val modHomepage = property("mod.homepage") as String
+val modAuthors = property("mod.authors") as String
+val modDescription = property("mod.description") as String
 
 version = "$modVersion+$minecraftVersion"
 base.archivesName = "$modId-neoforge"
@@ -74,15 +80,15 @@ tasks.withType<JavaCompile>().configureEach {
 
 tasks.processResources {
     val props = mapOf(
-        "mod_license" to property("mod.license"),
+        "mod_license" to modLicense,
         "mod_id" to modId,
         "mod_version" to project.version.toString(),
-        "mod_name" to property("mod.name"),
-        "mod_homepage" to property("mod.homepage"),
-        "mod_authors" to property("mod.authors"),
-        "mod_description" to property("mod.description"),
+        "mod_name" to modName,
+        "mod_homepage" to modHomepage,
+        "mod_authors" to modAuthors,
+        "mod_description" to modDescription,
         "neo_version" to neoVersion,
-        "minecraft_version_range" to property("mod.mc_compat"),
+        "minecraft_version_range" to minecraftCompat,
     )
     inputs.properties(props)
 

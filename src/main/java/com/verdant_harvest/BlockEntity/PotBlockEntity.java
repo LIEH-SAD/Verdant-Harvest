@@ -23,7 +23,19 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+//? if >=26.3 {
+/*import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.component.CookingFuel;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ResolvableInt;
+import net.minecraft.world.phys.Vec3;
+*///?} else {
 import net.minecraft.world.level.block.entity.FuelValues;
+//?}
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -34,7 +46,7 @@ import java.util.Optional;
 
 /**
  * 锅方块实体：持有 11 格容器（3×3 网格 0-8、燃料槽 9、结果槽 10），
- * 燃料机制完全复用熔炉的 {@link FuelValues}（同一种燃料、同样的燃烧时长），
+ * 燃料机制完全复用熔炉的燃料数据（同一种燃料、同样的燃烧时长），
  * 每个服务器 tick 匹配 {@link PotCookingRecipe} 并消耗燃料推进烧制进度。
  */
 public class PotBlockEntity extends BlockEntity implements Container, MenuProvider {
@@ -102,7 +114,11 @@ public class PotBlockEntity extends BlockEntity implements Container, MenuProvid
         if (canCraft) {
             // 未点燃且需要烧制时，点燃新燃料
             if (!isLit) {
+                //? if >=26.3 {
+                /*int burnDuration = blockEntity.getBurnDuration((ServerLevel) level, fuelStack);
+                *///?} else {
                 int burnDuration = blockEntity.getBurnDuration(level.fuelValues(), fuelStack);
+                //?}
                 blockEntity.litTotalTime = burnDuration;
                 blockEntity.litTimeRemaining = burnDuration;
                 if (burnDuration > 0) {
@@ -130,10 +146,27 @@ public class PotBlockEntity extends BlockEntity implements Container, MenuProvid
         }
     }
 
-    /** 读取熔炉同款燃料表，返回该物品的燃烧时长（刻）。 */
+    // 读取熔炉同款燃料数据，返回该物品的燃烧时长（刻）。
+    //? if >=26.3 {
+    /*protected int getBurnDuration(ServerLevel level, ItemStack stack) {
+        return ResolvableInt.getFromItem(stack, DataComponents.COOKING_FUEL, CookingFuel::burnTime,
+                this.getLootContext(level), 0);
+    }
+
+    private LootContext getLootContext(ServerLevel level) {
+        LootParams params = new LootParams.Builder(level)
+                .withParameter(LootContextParams.BLOCK_STATE, this.getBlockState())
+                .withParameter(LootContextParams.BLOCK_ENTITY, this)
+                .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.getBlockPos()))
+                .withParameter(LootContextParams.CONTAINER, this)
+                .create(LootContextParamSets.CONTAINER_PROCESS);
+        return new LootContext.Builder(params).create(Optional.empty());
+    }
+    *///?} else {
     protected int getBurnDuration(FuelValues fuelValues, ItemStack stack) {
         return fuelValues.burnDuration(stack);
     }
+    //?}
 
     /** 消耗一份燃料；烧完若存在合成残留（如空桶）则留在燃料槽。 */
     private static void consumeFuel(NonNullList<ItemStack> items, ItemStack fuelStack) {
@@ -275,7 +308,11 @@ public class PotBlockEntity extends BlockEntity implements Container, MenuProvid
                 return false;
             }
             ItemStack current = this.items.get(FUEL_SLOT);
+            //? if >=26.3 {
+            /*return stack.has(DataComponents.COOKING_FUEL) || (stack.is(Items.BUCKET) && !current.is(Items.BUCKET));
+            *///?} else {
             return this.level.fuelValues().isFuel(stack) || (stack.is(Items.BUCKET) && !current.is(Items.BUCKET));
+            //?}
         }
         return true;
     }

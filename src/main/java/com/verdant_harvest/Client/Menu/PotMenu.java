@@ -2,6 +2,9 @@ package com.verdant_harvest.Client.Menu;
 
 import com.verdant_harvest.Blocks.Blocks;
 import com.verdant_harvest.MenuTypes;
+//? if >=26.3 {
+/*import net.minecraft.core.component.DataComponents;
+*///?}
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -13,7 +16,7 @@ import net.minecraft.world.level.Level;
 
 /**
  * 锅菜单：3×3 配方输入格(0-8) + 燃料槽(9) + 结果槽(10)，共 47 槽（含玩家背包 27 + 热键栏 9）。
- * 燃料槽完全复用熔炉燃料判定（{@link Level#fuelValues()}），仅允许放入可燃物。
+ * 燃料槽完全复用熔炉燃料判定，仅允许放入可燃物。
  */
 public class PotMenu extends AbstractContainerMenu {
 
@@ -82,9 +85,13 @@ public class PotMenu extends AbstractContainerMenu {
         this.addDataSlots(data);
     }
 
-    /** 使用熔炉同款燃料表判断是否为燃料。 */
+    // 使用熔炉同款燃料数据判断是否为燃料。
     public boolean isFuel(ItemStack stack) {
+        //? if >=26.3 {
+        /*return stack.has(DataComponents.COOKING_FUEL);
+        *///?} else {
         return this.level.fuelValues().isFuel(stack);
+        //?}
     }
 
     @Override

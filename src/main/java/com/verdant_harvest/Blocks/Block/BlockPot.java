@@ -1,6 +1,8 @@
 package com.verdant_harvest.Blocks.Block;
 
+//? if <26.3 {
 import com.mojang.serialization.MapCodec;
+//?}
 import com.verdant_harvest.BlockEntity.BlockEntityTypes;
 import com.verdant_harvest.BlockEntity.PotBlockEntity;
 import com.verdant_harvest.Client.Menu.PotMenu;
@@ -23,11 +25,13 @@ import org.jspecify.annotations.Nullable;
  * 方块实体驱动烧制进度；被玩家破坏时掉落容器内物品。
  */
 public class BlockPot extends BaseEntityBlock {
+    //? if <26.3 {
     public static final MapCodec<BlockPot> CODEC = simpleCodec(BlockPot::new);
 
     public MapCodec<? extends BlockPot> codec() {
         return CODEC;
     }
+    //?}
 
     public BlockPot(BlockBehaviour.Properties properties) {
         super(properties);

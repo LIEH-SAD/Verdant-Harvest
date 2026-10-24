@@ -1,13 +1,15 @@
 // Fabric build script, evaluated once per `versions/{mcversion}-fabric` node.
 
 plugins {
-    id("net.fabricmc.fabric-loom") version "1.19.3"
+    id("net.fabricmc.fabric-loom") version "1.18.4"
 }
 
 val modId = property("mod.id") as String
+val modName = property("mod.name") as String
 val modVersion = property("mod.version") as String
 val minecraftVersion = sc.current.version
 val loaderVersion = property("deps.fabric_loader") as String
+val minecraftCompat = property("mod.mc_compat") as String
 
 version = "$modVersion+$minecraftVersion"
 base.archivesName = "$modId-fabric"
@@ -66,9 +68,9 @@ tasks.withType<JavaCompile>().configureEach {
 tasks.processResources {
     val props = mapOf(
         "id" to modId,
-        "name" to property("mod.name"),
+        "name" to modName,
         "version" to project.version.toString(),
-        "minecraft" to property("mod.mc_compat"),
+        "minecraft" to minecraftCompat,
         "loader" to loaderVersion,
         "java" to "25",
     )
